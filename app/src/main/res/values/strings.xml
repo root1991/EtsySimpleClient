@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Etsy client</string>
+    <string name="str_tab_search">Search</string>
+    <string name="str_tab_featured">Featured</string>
+    <string name="str_search_label">Search</string>
+    <string name="str_submit">Submit</string>
+    <string name="str_search_results">Search results</string>
+    <string name="str_save_to_favorite">Save to favorites</string>
+    <string name="str_db_success_message">Product has been saved to favorites</string>
+    <string name="str_product_details">Product details</string>
+    <string name="str_featured_empty">No featured products</string>
+    <string name="str_error_message">Something went wrong</string>
+
+</resources>

@@ -1,0 +1,122 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+    dependencies {
+        // The Fabric Gradle plugin uses an open ended version to react
+        // quickly to Android tooling updates
+        classpath 'io.fabric.tools:gradle:1.20.1'
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+apply plugin: 'com.neenbedankt.android-apt'
+
+apply from: '../gradle.properties'
+
+repositories {
+    maven { url "http://dl.bintray.com/populov/maven" }
+    maven { url 'https://maven.fabric.io/public' }
+    mavenCentral()
+    mavenLocal()
+}
+
+def getDate() {
+    return new Date().format('dd/MM/yyyy--HH:mm')
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.test"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+
+/*    signingConfigs {
+        release {
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_KEYSTORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS_NAME
+            keyPassword RELEASE_KEY_ALIAS_PASSWORD
+        }
+        debug {
+            storeFile file(DEBUG_STORE_FILE)
+            storePassword DEBUG_KEYSTORE_PASSWORD
+            keyAlias DEBUG_KEY_ALIAS_NAME
+            keyPassword DEBUG_KEY_ALIAS_PASSWORD
+        }
+    }*/
+
+    buildTypes {
+        release {
+//            signingConfig signingConfigs.release
+            proguardFile 'proguard.cfg'
+            minifyEnabled true
+            shrinkResources true
+        }
+
+        debug {
+//            signingConfig signingConfigs.release
+            minifyEnabled false
+            ext.enableCrashlytics = false
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+dependencies {
+    // Android
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+
+    // View/Dependency Injection
+    compile 'com.jakewharton:butterknife:7.0.0'
+
+    // Realm
+    compile 'io.realm:realm-android:0.84.1'
+
+    // REST
+    compile('com.squareup.retrofit:retrofit:2.0.0-beta2')
+    compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
+    compile 'com.squareup.okhttp:logging-interceptor:2.6.0'
+    compile 'com.squareup.okhttp3:okhttp:3.0.0-RC1'
+
+    //Images
+    compile 'com.facebook.fresco:fresco:0.7.0+'
+
+    //RX
+    compile "io.reactivex:rxjava:1.0.14"
+
+    // Logging and Crash-reporting
+    compile 'com.jakewharton.timber:timber:4.1.0'
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}

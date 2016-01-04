@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager_images"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@+id/toolbar"/>
+
+            <com.test.util.CircularPageIndicator
+                android:id="@+id/page_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/text_view_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="23dp"
+                app:centered="true"
+                app:strokeWidth="1dp"
+                app:unselectedColor="@color/colorPrimary"/>
+
+            <TextView
+                android:id="@+id/text_view_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view_pager_images"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:singleLine="true"
+                android:textSize="@dimen/text_size_titles"
+                android:layout_toLeftOf="@+id/text_view_price"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/text_view_price"
+                android:layout_below="@+id/view_pager_images"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_size_titles"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:id="@+id/text_view_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_title"
+                android:padding="@dimen/activity_horizontal_margin"/>
+
+            <Button
+                android:id="@+id/button_save_to_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:minWidth="@dimen/button_min_width"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:layout_below="@+id/text_view_description"
+                android:background="@drawable/selector_button"
+                android:text="@string/str_save_to_favorite"
+                android:textColor="@android:color/white"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+</LinearLayout>

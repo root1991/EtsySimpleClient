@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="pageIndicator">
+        <attr name="radius" format="dimension" />
+        <attr name="centered" format="boolean" />
+        <attr name="unselectedColor" format="color" />
+        <attr name="selectedColor" format="color" />
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="gapSize" format="dimension" />
+        <attr name="android:background" />
+    </declare-styleable>
+
+</resources>
